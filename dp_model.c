@@ -164,6 +164,32 @@ int maxUncrossedLines(int* A, int ASize, int* B, int BSize){
     return dp[ASize][BSize];
 }
 
+// 树状dp
+class Solution {
+public:
+    
+    TreeNode *solve(TreeNode *root) {
+        if (root == NULL) return NULL;
+        root->left = solve(root->left);
+        root->right = solve(root->right);
+        int l = root->left ? root->left->val : 0;
+        int r = root->right ? root->right->val : 0;
+        int ll = (root->left && root->left->left ? root->left->left->val : 0);
+        int lr = (root->left && root->left->right ? root->left->right->val : 0);
+        int rl = (root->right && root->right->left ? root->right->left->val : 0);
+        int rr = (root->right && root->right->right ? root->right->right->val : 0);
+        root->val = max(root->val + ll + lr + rl + rr, l + r);
+        return root;
+    }
+    
+    int rob(TreeNode* root) {
+        if (root == NULL) return 0;
+        TreeNode *res = solve(root);
+        return res->val;
+    }
+};
+
+
 int main() {
     int value[] = {0, 8 , 10 , 4 , 5 , 5};       
     int weight[] = {0, 6 , 4 , 2 , 4 , 3};     
