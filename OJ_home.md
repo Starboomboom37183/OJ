@@ -46,3 +46,41 @@ struct TreeNode* buildTree(int* preorder, int preorderSize, int* inorder, int in
 
 #堆排序
 
+#单调栈
+
+#并查集
+
+#后缀数组
+
+#图
+##最小生成树
+
+##二部图
+
+##最大团
+
+##欧拉图
+
+
+## 回溯法/dfs搜索法
+框架
+```
+int search(int t)
+{
+    if(满足输出条件)
+    {
+        输出解;
+    }
+    else
+    {
+        for(int i=1;i<=尝试方法数;i++)
+            if(满足进一步搜索条件)
+            {
+                为进一步搜索所需要的状态打上标记;
+                search(t+1);
+                恢复到打标记前的状态;//也就是说的{回溯一步}
+            }
+    }
+}
+
+```
